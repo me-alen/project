@@ -1897,15 +1897,20 @@ module.exports = require('./lib/axios');
 },{"./lib/axios":"node_modules/axios/lib/axios.js"}],"main.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchData = fetchData;
+
 var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const baseEndPoint = "http://10.154.4.174/players";
 const userData = {
-  username: "lssd",
-  password: "lssd",
-  email: "lssd@gmail.com"
+  username: "noobmaster69",
+  password: "noobmaster",
+  email: "noobmaster69@gmail.com"
 };
 
 async function fetchData() {
@@ -1919,15 +1924,18 @@ async function postData() {
     data
   } = await fetchData();
   console.log(data);
-  const posting = await (0, _axios.default)({
+  (0, _axios.default)({
     method: "post",
     url: "http://10.154.4.174/players",
     data: JSON.stringify(userData),
     headers: {
       "Content-Type": "application/json"
     }
+  }).then(res => {
+    console.log(res);
+  }).catch(err => {
+    console.log(err);
   });
-  console.log(posting);
 }
 
 postData();
@@ -1959,7 +1967,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36847" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42179" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

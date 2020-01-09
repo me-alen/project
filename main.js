@@ -1,27 +1,31 @@
 const baseEndPoint = "http://10.154.4.174/players";
 import axios from "axios";
 const userData = {
-  username: "lssd",
-  password: "lssd",
-  email: "lssd@gmail.com"
+  username: "noobmaster69",
+  password: "noobmaster",
+  email: "noobmaster69@gmail.com"
 };
 
-async function fetchData() {
+export async function fetchData() {
   return await axios({
     url: baseEndPoint
   });
 }
-
 async function postData() {
   const { data } = await fetchData();
   console.log(data);
 
-  const posting = await axios({
+  axios({
     method: "post",
     url: "http://10.154.4.174/players",
     data: JSON.stringify(userData),
     headers: { "Content-Type": "application/json" }
-  });
-  console.log(posting);
+  })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
 postData();
