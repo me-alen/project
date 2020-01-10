@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        background-color: cyan;
+      }
+
+      .head {
+        padding-top: 100px;
+        text-align: center;
+      }
+
+      .invalid {
+        padding: 10px;
+      }
+    </style>
+    <title>Log In</title>
+  </head>
+
+  <body>
+    <div class="head">
+      <h1>Log In</h1>
+      <form class="form">
+        <input type="text" required placeholder="Username" /><br /><br />
+        <input type="password" required name="psw" placeholder="Password" />
+        <div class="invalid" style="visibility: hidden;color: red;">
+          Invalid Credentials
+        </div>
+        <button class="button" type="submit">LogIn</button>
+      </form>
+    </div>
+    <script src="./login.js" type="module"></script>
+  </body>
+</html>
