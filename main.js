@@ -1,24 +1,18 @@
-const baseEndPoint = "http://10.154.4.174/players";
-import axios from "axios";
-const userData = {
-  username: "noobmaster69",
-  password: "noobmaster",
-  email: "noobmaster69@gmail.com"
-};
+import * as elements from "./elements.js";
 
-export async function fetchData() {
-  return await axios({
-    url: baseEndPoint
-  });
+//function declerations
+
+async function fetchDataFromServer() {
+  return await (await fetch(elements.baseEndPoint)).json();
 }
-async function postData() {
-  const { data } = await fetchData();
-  console.log(data);
 
-  axios({
+async function postDataToServer() {
+  const userDataArray = await fetchDataFromServer();
+  console.log(userDataArray);
+
+  fetch(elements.baseEndPoint, {
     method: "post",
-    url: "http://10.154.4.174/players",
-    data: JSON.stringify(userData),
+    body: JSON.stringify(elements.userData),
     headers: { "Content-Type": "application/json" }
   })
     .then(res => {
@@ -28,4 +22,11 @@ async function postData() {
       console.log(err);
     });
 }
-postData();
+
+// function calls
+
+document.querySelector(".signup").addEventListener("click", () => {
+  redirects(`${baseurl}signup`);
+});
+
+postDataToServer();
