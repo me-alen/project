@@ -3,6 +3,8 @@ const baseEndPoint = "http://10.154.4.174";
 const loginDiv = document.querySelector(".invalid");
 const gameStat = document.querySelector(".output");
 
+let currentPos = {};
+
 async function fetchPlayerState() {
   return fetch(
     `${baseEndPoint}/players/${sessionStorage.getItem("userId")}/object-states`,
@@ -19,16 +21,13 @@ async function fetchPlayerState() {
 }
 
 fetchPlayerState().then(res => {
-  console.log(res[0]);
-
   if (res[0] !== undefined) {
     (currentPos.x = res[0].state.xpos), (currentPos.y = res[0].state.ypos);
   } else {
     currentPos = { x: 0, y: 0 };
   }
+  gameStat.innerHTML = `xpos : ${currentPos.x}, ypos : ${currentPos.y}`;
 });
-
-let currentPos;
 
 function UserInterfaceManagr(currentPos) {
   this.rover = new Rover(currentPos);
@@ -51,7 +50,6 @@ UserInterfaceManagr.prototype.setUpUserActions = function() {
 
 async function savePlayerEachMove(xpos = 0, ypos = 0) {
   gameStat.innerHTML = `xpos : ${xpos}, ypos : ${ypos}`;
-  console.log(currentPos);
   return fetch(
     `${baseEndPoint}/players/${sessionStorage.getItem(
       "userId"
